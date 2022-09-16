@@ -1,2 +1,2 @@
 # PowerShell
-Ресурс для сохранения различных PowerShell-скриптов
+Directory for some powershell's scripts
