@@ -1,19 +1,19 @@
-#$search_context="OU=Звільнені,OU=ДКП,DC=corp,DC=cyberpolice,DC=gov,DC=ua"
-$search_context="OU=Test-GPO,DC=corp,DC=cyberpolice,DC=gov,DC=ua"
+#$search_context="OU=Г‡ГўВіГ«ГјГ­ГҐГ­Ві,OU=Г„ГЉГЏ,DC=corp,DC=cyberpolice,DC=gov,DC=ua"
+$search_context="...Domain context..."
 
-# Получаем список всех пользователей в Active Directory
+# ГЏГ®Г«ГіГ·Г ГҐГ¬ Г±ГЇГЁГ±Г®ГЄ ГўГ±ГҐГµ ГЇГ®Г«ГјГ§Г®ГўГ ГІГҐГ«ГҐГ© Гў Active Directory
 $users = Get-ADUser -filter * -SearchBase $search_context
 
-# Получаем список всех групп в Active Directory
+# ГЏГ®Г«ГіГ·Г ГҐГ¬ Г±ГЇГЁГ±Г®ГЄ ГўГ±ГҐГµ ГЈГ°ГіГЇГЇ Гў Active Directory
 $groups = Get-ADGroup -Filter *
 
 foreach ($user in $users) {
-    # Получаем все группы, в которых состоит текущий пользователь
+    # ГЏГ®Г«ГіГ·Г ГҐГ¬ ГўГ±ГҐ ГЈГ°ГіГЇГЇГ», Гў ГЄГ®ГІГ®Г°Г»Гµ Г±Г®Г±ГІГ®ГЁГІ ГІГҐГЄГіГ№ГЁГ© ГЇГ®Г«ГјГ§Г®ГўГ ГІГҐГ«Гј
     $userGroups = Get-ADUser $user.SamAccountName | Get-ADPrincipalGroupMembership
 
     foreach ($group in $userGroups) {
-        # Удаляем текущего пользователя из текущей группы
+        # Г“Г¤Г Г«ГїГҐГ¬ ГІГҐГЄГіГ№ГҐГЈГ® ГЇГ®Г«ГјГ§Г®ГўГ ГІГҐГ«Гї ГЁГ§ ГІГҐГЄГіГ№ГҐГ© ГЈГ°ГіГЇГЇГ»
 #        Remove-ADGroupMember -Identity $group -Members $user -Confirm:$false
-        Write-Host "Пользователь $($user.SamAccountName) успешно удален из группы $($group.SamAccountName)."
+        Write-Host "ГЏГ®Г«ГјГ§Г®ГўГ ГІГҐГ«Гј $($user.SamAccountName) ГіГ±ГЇГҐГёГ­Г® ГіГ¤Г Г«ГҐГ­ ГЁГ§ ГЈГ°ГіГЇГЇГ» $($group.SamAccountName)."
     }
 }
