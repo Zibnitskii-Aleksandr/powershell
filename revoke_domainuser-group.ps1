@@ -1,4 +1,3 @@
-#$search_context="OU=Çâ³ëüíåí³,OU=ÄÊÏ,DC=corp,DC=cyberpolice,DC=gov,DC=ua"
 $search_context="...Domain context..."
 
 # Ïîëó÷àåì ñïèñîê âñåõ ïîëüçîâàòåëåé â Active Directory
